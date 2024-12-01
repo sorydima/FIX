@@ -1,0 +1,135 @@
+[package]
+name = "fix"
+version = "0.0.11-alpha.1"
+edition = "2018"
+authors = ["Ulyssa <git@ulyssa.dev>"]
+repository = "https://github.com/ulyssa/fix"
+homepage = "https://fix.chat"
+readme = "README.md"
+description = "A Matrix chat client that uses Vim keybindings"
+license = "Apache-2.0"
+exclude = [".github", "CONTRIBUTING.md"]
+keywords = ["matrix", "chat", "tui", "vim"]
+categories = ["command-line-utilities"]
+rust-version = "1.74"
+build = "build.rs"
+
+[features]
+default = ["bundled", "desktop"]
+bundled = ["matrix-sdk/bundled-sqlite", "rustls-tls"]
+desktop = ["dep:notify-rust", "modalkit/clipboard"]
+native-tls = ["matrix-sdk/native-tls"]
+rustls-tls = ["matrix-sdk/rustls-tls"]
+
+[build-dependencies.vergen]
+version = "8"
+default-features = false
+features = ["build", "git", "gitcl",]
+
+[dependencies]
+anyhow = "1.0"
+bitflags = "^2.3"
+chrono = "0.4"
+clap = {version = "~4.3", features = ["derive"]}
+css-color-parser = "0.1.2"
+dirs = "4.0.0"
+emojis = "0.5"
+futures = "0.3"
+gethostname = "0.4.1"
+html5ever = "0.26.0"
+image = "0.24.5"
+libc = "0.2"
+markup5ever_rcdom = "0.2.0"
+mime = "^0.3.16"
+mime_guess = "^2.0.4"
+nom = "7.0.0"
+open = "3.2.0"
+rand = "0.8.5"
+ratatui = "0.26"
+ratatui-image = { version = "=1.0.0", features = ["serde"] }
+regex = "^1.5"
+rpassword = "^7.2"
+serde = "^1.0"
+serde_json = "^1.0"
+sled = "0.34.7"
+temp-dir = "0.1.12"
+thiserror = "^1.0.37"
+toml = "^0.8.12"
+tracing = "~0.1.36"
+tracing-appender = "~0.2.2"
+tracing-subscriber = "0.3.16"
+unicode-segmentation = "^1.7"
+unicode-width = "0.1.10"
+url = {version = "^2.2.2", features = ["serde"]}
+edit = "0.1.4"
+humansize = "2.0.0"
+
+[dependencies.comrak]
+version = "0.22.0"
+default-features = false
+features = ["shortcodes"]
+
+[dependencies.notify-rust]
+version = "~4.10.0"
+default-features = false
+features = ["zbus", "serde"]
+optional = true
+
+[dependencies.modalkit]
+version = "0.0.20"
+default-features = false
+#git = "https://github.com/ulyssa/modalkit"
+#rev = "24f3ec11c7f634005a27b26878d0fbbdcc08f272"
+
+[dependencies.modalkit-ratatui]
+version = "0.0.20"
+#git = "https://github.com/ulyssa/modalkit"
+#rev = "24f3ec11c7f634005a27b26878d0fbbdcc08f272"
+
+[dependencies.matrix-sdk]
+version = "0.7.1"
+default-features = false
+features = ["e2e-encryption", "sqlite", "sso-login"]
+
+[dependencies.tokio]
+version = "1.24.1"
+features = ["macros", "net", "rt-multi-thread", "sync", "time"]
+
+[dev-dependencies]
+lazy_static = "1.4.0"
+pretty_assertions = "1.4.0"
+
+[profile.release-lto]
+inherits = "release"
+incremental = false
+lto = true
+
+[package.metadata.deb]
+section = "net"
+license-file = ["LICENSE", "0"]
+assets = [
+    # Binary:
+    ["target/release/fix", "usr/bin/fix", "755"],
+    # Manual pages:
+    ["docs/fix.1", "usr/share/man/man1/fix.1", "644"],
+    ["docs/fix.5", "usr/share/man/man5/fix.5", "644"],
+    # Other assets:
+    ["fix.desktop", "usr/share/applications/fix.desktop", "644"],
+    ["config.example.toml", "usr/share/fix/config.example.toml", "644"],
+    ["docs/fix.svg", "usr/share/icons/hicolor/scalable/apps/fix.svg", "644"],
+    ["docs/fix.metainfo.xml", "usr/share/metainfo/fix.metainfo.xml", "644"],
+]
+
+[package.metadata.generate-rpm]
+assets = [
+    # Binary:
+    { source = "target/release/fix", dest = "/usr/bin/fix", mode = "755" },
+    # Manual pages:
+    { source = "docs/fix.1", dest = "/usr/share/man/man1/fix.1", mode = "644" },
+    { source = "docs/fix.5", dest = "/usr/share/man/man5/fix.5", mode = "644" },
+    # Other assets:
+    { source = "fix.desktop", dest = "/usr/share/applications/fix.desktop", mode = "644" },
+    { source = "config.example.toml", dest = "/usr/share/fix/config.example.toml", mode = "644"},
+    { source = "docs/fix.svg", dest = "/usr/share/icons/hicolor/scalable/apps/fix.svg", mode = "644"},
+    { source = "docs/fix.metainfo.xml", dest = "/usr/share/metainfo/fix.metainfo.xml", mode = "644"},
+]

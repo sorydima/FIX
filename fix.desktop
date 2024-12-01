@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Categories=Network;InstantMessaging;Chat;
+Comment=A REChain client for Vim addicts
+Exec=fix
+GenericName=REChain Client
+Keywords=REChain;rechain.online;chat;communications;talk;
+Name=fix
+Icon=fix
+StartupNotify=false
+Terminal=true
+TryExec=fix
+Type=Application
