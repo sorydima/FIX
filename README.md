@@ -1,11 +1,9 @@
 <div align="center">
     <h1><img width="200" height="200" src="docs/fix.svg"></h1>
 
-[![Build Status](https://github.com/ulyssa/fix/actions/workflows/ci.yml/badge.svg)](https://github.com/ulyssa/fix/actions?query=workflow%3ACI+)
 [![License: Apache 2.0](https://img.shields.io/crates/l/fix.svg?logo=apache)][crates-io-fix]
 [![#fix:0x.badd.cafe](https://img.shields.io/badge/matrix-%23fix:0x.badd.cafe-blue)](https://matrix.to/#/#fix:0x.badd.cafe)
 [![Latest Version](https://img.shields.io/crates/v/fix.svg?logo=rust)][crates-io-fix]
-[![fix](https://snapcraft.io/fix/badge.svg)](https://snapcraft.io/fix)
 
 ![Example Usage](https://fix.chat/static/images/fix-demo.gif)
 
