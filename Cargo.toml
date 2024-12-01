@@ -65,7 +65,7 @@ edit = "0.1.4"
 humansize = "2.0.0"
 
 [dependencies.comrak]
-version = "0.22.0"
+version = "0.31.0"
 default-features = false
 features = ["shortcodes"]
 
