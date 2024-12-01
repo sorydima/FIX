@@ -1,27 +1,30 @@
-# Contributing to fix
 
-## Building
+# Contributing to FIX
 
-You can build `fix` locally by using `cargo build`.
+We welcome contributions to FIX!
 
-## Pull Requests
+## How to Contribute
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+3. Write clean, well-documented code.
+4. Test your changes:
+   ```bash
+   cargo test
+   ```
+5. Commit your changes:
+   ```bash
+   git commit -m "Add your message here"
+   ```
+6. Submit a pull request.
 
-When making changes to `fix`, please make sure to:
+## Code Style
+- Follow Rust's official coding conventions.
+- Ensure compatibility with Cargo.
 
-- Add new tests for fixed bugs and new features whenever possible
-- Add new documentation with new features
+## Reporting Issues
+Use the GitHub Issues tab to report bugs or suggest features.
 
-If you're adding a large amount of new code, please make sure to look at a test
-coverage report and ensure that your tests sufficiently cover your changes.
-
-You can generate an HTML report with [cargo-tarpaulin] by running:
-
-```
-% cargo tarpaulin --avoid-cfg-tarpaulin --out html
-```
-
-## Tests
-
-You can run the unit tests and documentation tests using `cargo test`.
-
-[cargo-tarpaulin]: https://github.com/xd009642/tarpaulin
+Thank you for contributing!
